@@ -1,18 +1,61 @@
-<section id="login-section">
-    <h2>Administrator Login</h2>
-    <label for="admin-username">Korisničko ime:</label>
-    <input type="text" id="admin-username" placeholder="Unesite korisničko ime">
-    <label for="admin-password">Lozinka:</label>
-    <input type="password" id="admin-password" placeholder="Unesite lozinku">
-    <button onclick="login()">Login</button>
-    <p id="login-error" style="color: red; display: none;">Pogrešno korisničko ime ili lozinka</p>
-</section>
+// Podaci za jednostavan login
+const adminUsername = "admin";
+const adminPassword = "12345";
 
-<section id="score-update" style="display: none;">
-    <h2>Unos bodova</h2>
-    <!-- Ostatak sekcije za unos bodova ostaje isti -->
-</section>
+// Login funkcija
+function login() {
+    const username = document.getElementById('admin-username').value;
+    const password = document.getElementById('admin-password').value;
+    
+    if (username === adminUsername && password === adminPassword) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('score-update').style.display = 'block';
+    } else {
+        document.getElementById('login-error').style.display = 'block';
+    }
+}
 
+// Ažuriranje bodova sa sortiranjem tabele
+function updatePoints() {
+    const player = document.getElementById('player-select').value;
+    const points = parseInt(document.getElementById('points-input').value);
+
+    const pointsElement = document.getElementById(`points-${player}`);
+    const leaderElement = document.getElementById(`leader-${player}`);
+
+    let currentPoints = parseInt(pointsElement.innerText);
+    currentPoints += points;
+
+    pointsElement.innerText = currentPoints;
+    leaderElement.innerText = currentPoints;
+
+    // Sortiraj tabelu
+    sortLeaderboard();
+}
+
+// Sortiranje tabele lidera
+function sortLeaderboard() {
+    const table = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
+    const rows = Array.from(table.getElementsByTagName('tr'));
+
+    rows.sort((a, b) => {
+        const pointsA = parseInt(a.getElementsByTagName('td')[1].innerText);
+        const pointsB = parseInt(b.getElementsByTagName('td')[1].innerText);
+        return pointsB - pointsA;
+    });
+
+    // Ažuriraj boje okvira na osnovu rezultata
+    rows.forEach((row, index) => {
+        row.style.border = 'none';
+        if (index === 0) row.style.border = '3px solid gold';
+        if (index === 1) row.style.border = '3px solid silver';
+        if (index === 2) row.style.border = '3px solid brown'; // Braon za treće mesto
+        if (index === 3) row.style.border = '3px solid #D2B48C'; // Svetlobraon za četvrto mesto
+    });
+
+    // Re-append sortirane redove u tabelu
+    rows.forEach(row => table.appendChild(row));
+}
 
 // Objekat sa svim igračima i njihovim bodovima
 const players = {
