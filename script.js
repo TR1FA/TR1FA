@@ -24,8 +24,8 @@ const players = {
     djordje: { name: "Đorđe Trifunović", points: 0, element: "leader-djordje", card: "card-djordje" },
     teodor: { name: "Teodor Majkić", points: 0, element: "leader-teodor", card: "card-teodor" },
     dalibor: { name: "Dalibor Giric", points: 0, element: "leader-dalibor", card: "card-dalibor" },
-    bojanm: { name: "Bojan Majkić", points: 0, element: "leader-bojanm", card: "card-bojanm" }
-    bojanp: { name: "Bojan Milanović", points: 0, element: "leader-bojanp", card: "card-bojanp" }
+    bojanm: { name: "Bojan Majkić", points: 0, element: "leader-bojanm", card: "card-bojanm" },
+    bojanp: { name: "Bojan Milanović", points: 0, element: "leader-bojanp", card: "card-bojanp" },
     milan: { name: "Milan Lalošević", points: 0, element: "leader-milan", card: "card-milan" }
 };
 
