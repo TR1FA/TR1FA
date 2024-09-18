@@ -75,3 +75,20 @@ header {
     padding: 10px;
     text-align: center;
 }
+
+/* Stilizovanje okvira za lidera */
+.player-card.border-gold {
+    border: 4px solid gold;
+}
+
+.player-card.border-silver {
+    border: 4px solid silver;
+}
+
+.player-card.border-brown {
+    border: 4px solid brown;
+}
+
+.player-card.border-lightbrown {
+    border: 4px solid lightbrown;
+}
