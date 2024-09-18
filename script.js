@@ -11,6 +11,7 @@ function login() {
         isLoggedIn = true;
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('score-update').style.display = 'block';
+        document.getElementById('login-error').style.display = 'none'; // Sakrij grešku ako je prijava uspešna
     } else {
         document.getElementById('login-error').style.display = 'block';
     }
