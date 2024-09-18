@@ -30,25 +30,25 @@
                 <img src="images/dejan_markovic.jpg" alt="Dejan Marković">
                 <h3>Dejan Marković</h3>
                 <p>Bodovi: <span id="leader-dejan">0</span></p>
-                <p>Kolo bodovi: <span id="round-dejan">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-teodor">
                 <img src="images/teodor_majkic.jpg" alt="Teodor Majkić">
                 <h3>Teodor Majkić</h3>
                 <p>Bodovi: <span id="leader-teodor">0</span></p>
-                <p>Kolo bodovi: <span id="round-teodor">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-goran">
                 <img src="images/goran_cimesa.jpg" alt="Goran Cimeša">
                 <h3>Goran Cimeša</h3>
                 <p>Bodovi: <span id="leader-goran">0</span></p>
-                <p>Kolo bodovi: <span id="round-goran">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-dalibor">
                 <img src="images/dalibor_giric.jpg" alt="Dalibor Giric">
                 <h3>Dalibor Giric</h3>
                 <p>Bodovi: <span id="leader-dalibor">0</span></p>
-                <p>Kolo bodovi: <span id="round-dalibor">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
         </div>
     </section>
@@ -61,24 +61,24 @@
                 <img src="images/leonardo_giric.jpg" alt="Leonardo Giric">
                 <h3>Leonardo Giric</h3>
                 <p>Bodovi: <span id="leader-leonardo">0</span></p>
-                <p>Kolo bodovi: <span id="round-leonardo">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-bojanm">
                 <img src="images/bojan_majkic.jpg" alt="Bojan Majkić">
                 <h3>Bojan Majkić</h3>
                 <p>Bodovi: <span id="leader-bojanm">0</span></p>
-                <p>Kolo bodovi: <span id="round-bojanm">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-djordje">
                 <img src="images/djordje_trifunovic.jpg" alt="Đorđe Trifunović">
                 <h3>Đorđe Trifunović</h3>
                 <p>Bodovi: <span id="leader-djordje">0</span></p>
-                <p>Kolo bodovi: <span id="round-djordje">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
         </div>
     </section>
 
-    <!-- Odsutni -->
+    <!-- Grupa Odsutni -->
     <section class="tournament-info">
         <h2>Odsutni</h2>
         <div class="group">
@@ -86,13 +86,13 @@
                 <img src="images/bojan_milanovic.jpg" alt="Bojan Milanović">
                 <h3>Bojan Milanović</h3>
                 <p>Bodovi: <span id="leader-bojanp">0</span></p>
-                <p>Kolo bodovi: <span id="round-bojanp">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
             <div class="player-card" id="card-milan">
                 <img src="images/milan_lalosevic.jpg" alt="Milan Lalošević">
                 <h3>Milan Lalošević</h3>
                 <p>Bodovi: <span id="leader-milan">0</span></p>
-                <p>Kolo bodovi: <span id="round-milan">0</span></p>
+                <p>Bodovi u kolu: 0</p>
             </div>
         </div>
     </section>
@@ -112,14 +112,8 @@
             <option value="bojanp">Bojan Milanović</option>
             <option value="milan">Milan Lalošević</option>
         </select>
-        <label for="round-position">Pozicija u kolu:</label>
-        <select id="round-position">
-            <option value="1">1. mesto</option>
-            <option value="2">2. mesto</option>
-            <option value="3">3. mesto</option>
-            <option value="4">4. mesto</option>
-        </select>
-        <button onclick="updateRoundPoints()">Dodaj kolo bodove</button>
+        <input type="number" id="points-input" placeholder="Unesite bodove">
+        <button onclick="updatePoints()">Dodaj bodove</button>
     </section>
 
     <!-- Tabela sa trenutnim liderima -->
@@ -133,42 +127,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Dejan Marković</td>
-                    <td id="leader-dejan">0</td>
-                </tr>
-                <tr>
-                    <td>Goran Cimeša</td>
-                    <td id="leader-goran">0</td>
-                </tr>
-                <tr>
-                    <td>Leonardo Giric</td>
-                    <td id="leader-leonardo">0</td>
-                </tr>
-                <tr>
-                    <td>Đorđe Trifunović</td>
-                    <td id="leader-djordje">0</td>
-                </tr>
-                <tr>
-                    <td>Teodor Majkić</td>
-                    <td id="leader-teodor">0</td>
-                </tr>
-                <tr>
-                    <td>Dalibor Giric</td>
-                    <td id="leader-dalibor">0</td>
-                </tr>
-                <tr>
-                    <td>Bojan Majkić</td>
-                    <td id="leader-bojanm">0</td>
-                </tr>
-                <tr>
-                    <td>Bojan Milanović</td>
-                    <td id="leader-bojanp">0</td>
-                </tr>
-                <tr>
-                    <td>Milan Lalošević</td>
-                    <td id="leader-milan">0</td>
-                </tr>
+                <!-- Redovi će biti popunjeni dinamički -->
             </tbody>
         </table>
     </section>
@@ -176,7 +135,7 @@
     <footer>
         <p>&copy; Druga Pikado Jesenja liga INVENDA 2024</p>
     </footer>
-    
-    <script src="scripts.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
