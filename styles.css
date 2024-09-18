@@ -77,4 +77,22 @@ header {
 }
 
 /* Boje okvira za prvih 4 mesta */
-.player
+.player-card {
+    border: 4px solid white; /* Default border color */
+}
+
+.player-card.gold {
+    border-color: gold; /* 1st place */
+}
+
+.player-card.silver {
+    border-color: silver; /* 2nd place */
+}
+
+.player-card.brown {
+    border-color: brown; /* 3rd place */
+}
+
+.player-card.lightbrown {
+    border-color: lightbrown; /* 4th place */
+}
