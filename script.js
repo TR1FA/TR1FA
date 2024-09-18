@@ -2,74 +2,67 @@ let isLoggedIn = false;
 const adminUsername = "admin";
 const adminPassword = "12345";
 
-// Login funkcija
-function login() {
-    const username = document.getElementById('admin-username').value;
-    const password = document.getElementById('admin-password').value;
-
-    if (username === adminUsername && password === adminPassword) {
-        isLoggedIn = true;
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('score-update').style.display = 'block';
-    } else {
-        document.getElementById('login-error').style.display = 'block';
-    }
-}
-
-// Objekat sa svim igračima i njihovim bodovima
+// Podaci o igračima i njihovim bodovima
 const players = {
-    dejan: { name: "Dejan Marković", roundPoints: 0, totalPoints: 0, elementRound: "leader-dejan-round", elementTotal: "leader-dejan-total", card: "card-dejan" },
-    teodor: { name: "Teodor Majkić", roundPoints: 0, totalPoints: 0, elementRound: "leader-teodor-round", elementTotal: "leader-teodor-total", card: "card-teodor" },
-    leonardo: { name: "Leonardo Giric", roundPoints: 0, totalPoints: 0, elementRound: "leader-leonardo-round", elementTotal: "leader-leonardo-total", card: "card-leonardo" },
-    bojanm: { name: "Bojan Majkić", roundPoints: 0, totalPoints: 0, elementRound: "leader-bojanm-round", elementTotal: "leader-bojanm-total", card: "card-bojanm" },
-    // Dodajte ostale igrače
+    dejan: { name: "Dejan Marković", totalPoints: 0, roundPoints: 0 },
+    goran: { name: "Goran Cimeša", totalPoints: 0, roundPoints: 0 },
+    leonardo: { name: "Leonardo Giric", totalPoints: 0, roundPoints: 0 },
+    djordje: { name: "Đorđe Trifunović", totalPoints: 0, roundPoints: 0 },
+    teodor: { name: "Teodor Majkić", totalPoints: 0, roundPoints: 0 },
+    dalibor: { name: "Dalibor Giric", totalPoints: 0, roundPoints: 0 },
+    bojanm: { name: "Bojan Majkić", totalPoints: 0, roundPoints: 0 },
+    bojanp: { name: "Bojan Milanović", totalPoints: 0, roundPoints: 0 },
+    milan: { name: "Milan Lalošević", totalPoints: 0, roundPoints: 0 }
 };
 
-// Funkcija za ažuriranje bodova
-function updatePoints() {
-    if (!isLoggedIn) {
-        alert('Morate se prijaviti da biste ažurirali bodove.');
-        return;
-    }
+const pointsForPosition = {
+    1: 6,
+    2: 3,
+    3: 2,
+    4: 1
+};
 
-    const playerSelect = document.getElementById('player-select').value;
-    const roundPoints = parseInt(document.getElementById('round-points-input').value, 10);
-    const totalPoints = parseInt(document.getElementById('total-points-input').value, 10);
+function updateRoundPoints() {
+    const playerSelect = document.getElementById('player-select');
+    const roundPosition = document.getElementById('round-position');
+    const playerId = playerSelect.value;
+    const position = parseInt(roundPosition.value);
 
-    if (isNaN(roundPoints) || isNaN(totalPoints)) {
-        alert('Morate uneti validne bodove.');
-        return;
-    }
+    if (!pointsForPosition[position]) return;
 
-    const player = players[playerSelect];
-    if (player) {
-        player.roundPoints = roundPoints;
-        player.totalPoints = totalPoints;
+    // Dodaj bodove za kolo
+    players[playerId].roundPoints += pointsForPosition[position];
+    
+    // Ažuriraj ukupne bodove
+    players[playerId].totalPoints += pointsForPosition[position];
 
-        document.getElementById(player.elementRound).textContent = roundPoints;
-        document.getElementById(player.elementTotal).textContent = totalPoints;
+    // Ažuriraj prikaz bodova na stranici
+    document.getElementById(`round-${playerId}`).textContent = players[playerId].roundPoints;
+    document.getElementById(`leader-${playerId}`).textContent = players[playerId].totalPoints;
 
-        // Ažuriranje tabele
-        updateLeaderboard();
-    } else {
-        alert('Igrač nije pronađen.');
-    }
+    // Ažuriraj tabelu lidera
+    updateLeaderboard();
 }
 
-// Funkcija za ažuriranje tabele sa liderima
 function updateLeaderboard() {
-    const tbody = document.querySelector('#leaderboard-table tbody');
-    tbody.innerHTML = '';
+    const tableBody = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
 
-    // Kreiranje niza igrača i sortiranje prema ukupnim bodovima
+    // Sortiraj igrače prema ukupnim bodovima
     const sortedPlayers = Object.values(players).sort((a, b) => b.totalPoints - a.totalPoints);
 
+    // Očisti postojeće redove
+    tableBody.innerHTML = '';
+
+    // Dodaj redove sa ažuriranim bodovima
     sortedPlayers.forEach(player => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${player.name}</td><td>${player.totalPoints}</td>`;
-        tbody.appendChild(row);
+        const row = tableBody.insertRow();
+        row.insertCell(0).textContent = player.name;
+        row.insertCell(1).textContent = player.totalPoints;
     });
 }
 
-// Inicijalizujte tabelu sa liderima na učitavanju stranice
-window.onload = updateLeaderboard;
+
+}
+
+// Inicijalno ažuriranje tabele lidera
+updateLeaderboard();
