@@ -16,6 +16,17 @@ function login() {
     }
 }
 
+// Objekat sa svim igračima i njihovim bodovima
+const players = {
+    dejan: { name: "Dejan Marković", points: 3, element: "leader-dejan", card: "card-dejan" },
+    goran: { name: "Goran Cimeša", points: 0, element: "leader-goran", card: "card-goran" },
+    leonardo: { name: "Leonardo Giric", points: 4, element: "leader-leonardo", card: "card-leonardo" },
+    djordje: { name: "Đorđe Trifunović", points: 9, element: "leader-djordje", card: "card-djordje" },
+    teodor: { name: "Teodor Majkić", points: 7, element: "leader-teodor", card: "card-teodor" },
+    dalibor: { name: "Dalibor Giric", points: 1, element: "leader-dalibor", card: "card-dalibor" },
+    bojanm: { name: "Bojan Majkić", points: 0, element: "leader-bojanm", card: "card-bojanm" }
+};
+
 // Funkcija za ažuriranje bodova
 function updatePoints() {
     if (!isLoggedIn) {
@@ -23,23 +34,26 @@ function updatePoints() {
         return;
     }
 
-    const player = document.getElementById('player-select').value;
-    const points = parseInt(document.getElementById('points-input').value);
+    const selectedPlayer = document.getElementById('player-select').value;
+    const pointsInput = document.getElementById('points-input').value;
 
-    const pointsElement = document.getElementById(`points-${player}`);
-    const leaderElement = document.getElementById(`leader-${player}`);
+    if (pointsInput === "" || isNaN(pointsInput)) {
+        alert("Unesite validan broj bodova!");
+        return;
+    }
 
-    let currentPoints = parseInt(pointsElement.innerText);
-    currentPoints += points;
+    // Ažuriraj bodove igrača
+    players[selectedPlayer].points += parseInt(pointsInput);
 
-    pointsElement.innerText = currentPoints;
-    leaderElement.innerText = currentPoints;
+    // Ažuriraj bodove u DOM-u
+    document.getElementById(players[selectedPlayer].element).textContent = players[selectedPlayer].points;
+    localStorage.setItem(selectedPlayer, players[selectedPlayer].points);
 
-    // Sortiraj tabelu
+    // Sortiraj tabelu lidera
     sortLeaderboard();
 }
 
-// Sortiranje tabele lidera po bodovima
+// Funkcija za sortiranje tabele lidera po bodovima
 function sortLeaderboard() {
     const table = document.getElementById("leaderboard-table");
     const rows = Array.from(table.rows).slice(1); // Izbegni zaglavlje tabele
@@ -51,4 +65,45 @@ function sortLeaderboard() {
     });
 
     rows.forEach(row => table.appendChild(row)); // Ponovno dodavanje sortirane liste
+
+    // Ažuriraj okvire za prva tri mesta
+    updateLeaderboardBorders();
 }
+
+// Funkcija za ažuriranje okvira lidera
+function updateLeaderboardBorders() {
+    const sortedPlayers = Object.keys(players).sort((a, b) => players[b].points - players[a].points);
+
+    sortedPlayers.forEach((playerKey, index) => {
+        const playerCard = document.getElementById(players[playerKey].card);
+
+        // Ukloni sve okvire
+        playerCard.style.border = "4px solid white";
+
+        // Dodaj odgovarajući okvir
+        if (index === 0) {
+            playerCard.style.border = "4px solid gold"; // 1. mesto
+        } else if (index === 1) {
+            playerCard.style.border = "4px solid silver"; // 2. mesto
+        } else if (index === 2) {
+            playerCard.style.border = "4px solid brown"; // 3. mesto
+        } else if (index === 3) {
+            playerCard.style.border = "4px solid lightbrown"; // 4. mesto
+        }
+    });
+}
+
+// Učitavanje bodova iz localStorage prilikom učitavanja stranice
+function loadPoints() {
+    for (let key in players) {
+        let savedPoints = localStorage.getItem(key);
+        if (savedPoints) {
+            players[key].points = parseInt(savedPoints);
+        }
+        document.getElementById(players[key].element).textContent = players[key].points;
+    }
+    sortLeaderboard();
+}
+
+// Učitavanje bodova prilikom učitavanja stranice
+window.onload = loadPoints;
