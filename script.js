@@ -11,7 +11,6 @@ function login() {
         isLoggedIn = true;
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('score-update').style.display = 'block';
-        loadPoints(); // Učitaj bodove prilikom uspešnog logovanja
     } else {
         document.getElementById('login-error').style.display = 'block';
     }
@@ -19,100 +18,58 @@ function login() {
 
 // Objekat sa svim igračima i njihovim bodovima
 const players = {
-    dejan: { name: "Dejan Marković", points: 0, element: "leader-dejan", card: "card-dejan" },
-    goran: { name: "Goran Cimeša", points: 0, element: "leader-goran", card: "card-goran" },
-    leonardo: { name: "Leonardo Giric", points: 0, element: "leader-leonardo", card: "card-leonardo" },
-    djordje: { name: "Đorđe Trifunović", points: 0, element: "leader-djordje", card: "card-djordje" },
-    teodor: { name: "Teodor Majkić", points: 0, element: "leader-teodor", card: "card-teodor" },
-    dalibor: { name: "Dalibor Giric", points: 0, element: "leader-dalibor", card: "card-dalibor" },
-    bojanm: { name: "Bojan Majkić", points: 0, element: "leader-bojanm", card: "card-bojanm" },
-    bojanp: { name: "Bojan Milanović", points: 0, element: "leader-bojanp", card: "card-bojanp" },
-    milan: { name: "Milan Lalošević", points: 0, element: "leader-milan", card: "card-milan" }
+    dejan: { name: "Dejan Marković", roundPoints: 0, totalPoints: 0, elementRound: "leader-dejan-round", elementTotal: "leader-dejan-total", card: "card-dejan" },
+    teodor: { name: "Teodor Majkić", roundPoints: 0, totalPoints: 0, elementRound: "leader-teodor-round", elementTotal: "leader-teodor-total", card: "card-teodor" },
+    leonardo: { name: "Leonardo Giric", roundPoints: 0, totalPoints: 0, elementRound: "leader-leonardo-round", elementTotal: "leader-leonardo-total", card: "card-leonardo" },
+    bojanm: { name: "Bojan Majkić", roundPoints: 0, totalPoints: 0, elementRound: "leader-bojanm-round", elementTotal: "leader-bojanm-total", card: "card-bojanm" },
+    // Dodajte ostale igrače
 };
 
 // Funkcija za ažuriranje bodova
 function updatePoints() {
     if (!isLoggedIn) {
-        alert('Morate se prijaviti da biste unosili bodove.');
+        alert('Morate se prijaviti da biste ažurirali bodove.');
         return;
     }
 
-    const selectedPlayer = document.getElementById('player-select').value;
-    const pointsInput = document.getElementById('points-input').value;
+    const playerSelect = document.getElementById('player-select').value;
+    const roundPoints = parseInt(document.getElementById('round-points-input').value, 10);
+    const totalPoints = parseInt(document.getElementById('total-points-input').value, 10);
 
-    if (pointsInput === "" || isNaN(pointsInput)) {
-        alert("Unesite validan broj bodova!");
+    if (isNaN(roundPoints) || isNaN(totalPoints)) {
+        alert('Morate uneti validne bodove.');
         return;
     }
 
-    const points = parseInt(pointsInput);
+    const player = players[playerSelect];
+    if (player) {
+        player.roundPoints = roundPoints;
+        player.totalPoints = totalPoints;
 
-    // Ažuriraj bodove igrača
-    players[selectedPlayer].points += points;
+        document.getElementById(player.elementRound).textContent = roundPoints;
+        document.getElementById(player.elementTotal).textContent = totalPoints;
 
-    // Ažuriraj bodove u DOM-u
-    document.getElementById(players[selectedPlayer].element).textContent = players[selectedPlayer].points;
-    localStorage.setItem(selectedPlayer, players[selectedPlayer].points);
-
-    // Ažuriraj bodove u kolu
-    const playerCard = document.getElementById(players[selectedPlayer].card);
-    playerCard.querySelector('p:last-of-type').textContent = `Bodovi u kolu: ${points}`;
-
-    // Sortiraj tabelu lidera
-    sortLeaderboard();
-}
-
-// Funkcija za sortiranje tabele lidera po bodovima
-function sortLeaderboard() {
-    const tableBody = document.getElementById("leaderboard-table").getElementsByTagName('tbody')[0];
-    const rows = Array.from(tableBody.rows);
-
-    rows.sort((a, b) => {
-        const aPoints = parseInt(a.cells[1].innerText);
-        const bPoints = parseInt(b.cells[1].innerText);
-        return bPoints - aPoints;
-    });
-
-    rows.forEach(row => tableBody.appendChild(row)); // Ponovno dodavanje sortirane liste
-
-    // Ažuriraj okvire za prva četiri mesta
-    updateLeaderboardBorders();
-}
-
-// Funkcija za ažuriranje okvira lidera
-function updateLeaderboardBorders() {
-    const sortedPlayers = Object.keys(players).sort((a, b) => players[b].points - players[a].points);
-
-    sortedPlayers.forEach((playerKey, index) => {
-        const playerCard = document.getElementById(players[playerKey].card);
-
-        // Ukloni sve okvire
-        playerCard.classList.remove("gold", "silver", "brown", "lightbrown");
-
-        // Dodaj odgovarajući okvir
-        if (index === 0) {
-            playerCard.classList.add("gold"); // 1. mesto
-        } else if (index === 1) {
-            playerCard.classList.add("silver"); // 2. mesto
-        } else if (index === 2) {
-            playerCard.classList.add("brown"); // 3. mesto
-        } else if (index === 3) {
-            playerCard.classList.add("lightbrown"); // 4. mesto
-        }
-    });
-}
-
-// Učitavanje bodova iz localStorage prilikom učitavanja stranice
-function loadPoints() {
-    for (let key in players) {
-        let savedPoints = localStorage.getItem(key);
-        if (savedPoints) {
-            players[key].points = parseInt(savedPoints);
-        }
-        document.getElementById(players[key].element).textContent = players[key].points;
+        // Ažuriranje tabele
+        updateLeaderboard();
+    } else {
+        alert('Igrač nije pronađen.');
     }
-    sortLeaderboard();
 }
 
-// Učitavanje bodova prilikom učitavanja stranice
-window.onload = loadPoints;
+// Funkcija za ažuriranje tabele sa liderima
+function updateLeaderboard() {
+    const tbody = document.querySelector('#leaderboard-table tbody');
+    tbody.innerHTML = '';
+
+    // Kreiranje niza igrača i sortiranje prema ukupnim bodovima
+    const sortedPlayers = Object.values(players).sort((a, b) => b.totalPoints - a.totalPoints);
+
+    sortedPlayers.forEach(player => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${player.name}</td><td>${player.totalPoints}</td>`;
+        tbody.appendChild(row);
+    });
+}
+
+// Inicijalizujte tabelu sa liderima na učitavanju stranice
+window.onload = updateLeaderboard;
