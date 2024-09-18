@@ -18,12 +18,12 @@ function login() {
 
 // Objekat sa svim igračima i njihovim bodovima
 const players = {
-    dejan: { name: "Dejan Marković", points: 3, element: "leader-dejan", card: "card-dejan" },
+    dejan: { name: "Dejan Marković", points: 0, element: "leader-dejan", card: "card-dejan" },
     goran: { name: "Goran Cimeša", points: 0, element: "leader-goran", card: "card-goran" },
-    leonardo: { name: "Leonardo Giric", points: 4, element: "leader-leonardo", card: "card-leonardo" },
-    djordje: { name: "Đorđe Trifunović", points: 9, element: "leader-djordje", card: "card-djordje" },
-    teodor: { name: "Teodor Majkić", points: 7, element: "leader-teodor", card: "card-teodor" },
-    dalibor: { name: "Dalibor Giric", points: 1, element: "leader-dalibor", card: "card-dalibor" },
+    leonardo: { name: "Leonardo Giric", points: 0, element: "leader-leonardo", card: "card-leonardo" },
+    djordje: { name: "Đorđe Trifunović", points: 0, element: "leader-djordje", card: "card-djordje" },
+    teodor: { name: "Teodor Majkić", points: 0, element: "leader-teodor", card: "card-teodor" },
+    dalibor: { name: "Dalibor Giric", points: 0, element: "leader-dalibor", card: "card-dalibor" },
     bojanm: { name: "Bojan Majkić", points: 0, element: "leader-bojanm", card: "card-bojanm" }
 };
 
