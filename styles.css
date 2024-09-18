@@ -30,105 +30,46 @@ h2 {
 }
 
 .player-card {
-    text-align: center;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border: 4px solid white;
-    transition: border 0.3s ease;
-}
-
-.player-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.score-update {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.score-update input,
-.score-update select {
+    border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
-    font-size: 16px;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-.leaderboard {
-    margin: 20px;
+.group {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .leaderboard table {
     width: 100%;
+    margin: 20px 0;
     border-collapse: collapse;
 }
 
-.leaderboard th, .leaderboard td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.leaderboard th {
-    background-color: #f4f4f4;
-    text-align: left;
-}
-
-.gold {
-    color: gold;
-}
-
-.silver {
-    color: silver;
-}
-
-.bronze {
-    color: #cd7f32;
-}
-.player-card {
+.leaderboard td, .leaderboard th {
+    padding: 10px;
+    border: 1px solid #ccc;
     text-align: center;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border: 4px solid white;
-    transition: border 0.3s ease;
 }
 
-.player-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
+/* Stilovi za zlatni, srebrni, braon i svetlobraon okvir */
+.player-card.gold {
+    border: 3px solid gold;
 }
 
-.gold {
-    border: 4px solid gold;
+.player-card.silver {
+    border: 3px solid silver;
 }
 
-.silver {
-    border: 4px solid silver;
+.player-card.bronze {
+    border: 3px solid brown;
 }
 
-.bronze {
-    border: 4px solid #cd7f32;
+.player-card.light-brown {
+    border: 3px solid #D2B48C; /* Svetlobraon boja */
 }
 
-.white {
-    border: 4px solid white;
-}
