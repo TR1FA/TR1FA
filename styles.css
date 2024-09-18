@@ -2,14 +2,31 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #f8f9fa;
+    padding: 10px;
     text-align: center;
-    padding: 1em 0;
+}
+
+.login-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form input {
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.login-form button {
+    margin-top: 10px;
 }
 
 .tournament-info {
@@ -20,68 +37,44 @@ header {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .player-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    flex: 1 1 150px;
+    margin: 10px;
     padding: 10px;
-    width: calc(25% - 20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 4px solid white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .player-card img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.player-card h3 {
-    margin: 10px 0;
-    font-size: 1.2em;
-}
-
-.player-card p {
-    margin: 5px 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 #score-update {
     margin: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#score-update select, #score-update button {
-    margin-top: 10px;
 }
 
 .leaderboard {
     margin: 20px;
 }
 
-#leaderboard-table {
+.leaderboard table {
     width: 100%;
     border-collapse: collapse;
 }
 
-#leaderboard-table th, #leaderboard-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.leaderboard th, .leaderboard td {
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: center;
 }
 
-#leaderboard-table th {
-    background-color: #f4f4f4;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+/* Boje okvira za prvih 4 mesta */
+.player
