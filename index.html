@@ -11,73 +11,68 @@
     <header>
         <h1>Druga Pikado Jesenja liga INVENDA 2024</h1>
     </header>
-	
-	<section class="tournament-info">
-    <h2>Grupa A</h2>
-    <div class="group">
-        <div class="player-card" id="card-dejan">
-            <img src="images/dejan_markovic.jpg" alt="Dejan Marković">
-            <h3>Dejan Marković</h3>
-            <p>Bodovi: <span id="points-dejan">0</span></p>
-        </div>
-        <div class="player-card" id="card-teodor">
-            <img src="images/teodor_majkic.jpg" alt="Teodor Majkić">
-            <h3>Teodor Majkić</h3>
-            <p>Bodovi: <span id="points-teodor">0</span></p>
-        </div>
-        <div class="player-card" id="card-goran">
-            <img src="images/goran_cimesa.jpg" alt="Goran Cimeša">
-            <h3>Goran Cimeša</h3>
-            <p>Bodovi: <span id="points-goran">0</span></p>
-        </div>
-        <div class="player-card" id="card-dalibor">
-            <img src="images/dalibor_giric.jpg" alt="Dalibor Giric">
-            <h3>Dalibor Giric</h3>
-            <p>Bodovi: <span id="points-dalibor">0</span></p>
-        </div>
-    </div>
-<section id="login-section">
-    <h2>Administrator Login</h2>
-    <label for="admin-username">Korisničko ime:</label>
-    <input type="text" id="admin-username" placeholder="Unesite korisničko ime">
-    <label for="admin-password">Lozinka:</label>
-    <input type="password" id="admin-password" placeholder="Unesite lozinku">
-    <button onclick="login()">Login</button>
-    <p id="login-error" style="color: red; display: none;">Pogrešno korisničko ime ili lozinka</p>
-</section>
 
-<section id="score-update" style="display: none;">
-    <h2>Unos bodova</h2>
-    <!-- Ostatak sekcije za unos bodova ostaje isti -->
-</section>
+    <!-- Login sekcija -->
+    <section id="login-section" class="login-form">
+        <label for="admin-username">Korisničko ime:</label>
+        <input type="text" id="admin-username" placeholder="Unesite korisničko ime">
+        <label for="admin-password">Lozinka:</label>
+        <input type="password" id="admin-password" placeholder="Unesite lozinku">
+        <button onclick="login()">Login</button>
+        <p id="login-error" style="color: red; display: none;">Pogrešno korisničko ime ili lozinka</p>
+    </section>
 
-		
-</section>
-
-	
-
-<section class="tournament-info">
-    <h2>Grupa B</h2>
-    <div class="group">
-        <div class="player-card" id="card-leonardo">
-            <img src="images/leonardo_giric.jpg" alt="Leonardo Giric">
-            <h3>Leonardo Giric</h3>
-            <p>Bodovi: <span id="points-leonardo">0</span></p>
+    <!-- Grupa A -->
+    <section class="tournament-info">
+        <h2>Grupa A</h2>
+        <div class="group">
+            <div class="player-card" id="card-dejan">
+                <img src="images/dejan_markovic.jpg" alt="Dejan Marković">
+                <h3>Dejan Marković</h3>
+                <p>Bodovi: <span id="points-dejan">0</span></p>
+            </div>
+            <div class="player-card" id="card-teodor">
+                <img src="images/teodor_majkic.jpg" alt="Teodor Majkić">
+                <h3>Teodor Majkić</h3>
+                <p>Bodovi: <span id="points-teodor">0</span></p>
+            </div>
+            <div class="player-card" id="card-goran">
+                <img src="images/goran_cimesa.jpg" alt="Goran Cimeša">
+                <h3>Goran Cimeša</h3>
+                <p>Bodovi: <span id="points-goran">0</span></p>
+            </div>
+            <div class="player-card" id="card-dalibor">
+                <img src="images/dalibor_giric.jpg" alt="Dalibor Giric">
+                <h3>Dalibor Giric</h3>
+                <p>Bodovi: <span id="points-dalibor">0</span></p>
+            </div>
         </div>
-        <div class="player-card" id="card-bojanm">
-            <img src="images/bojan_majkic.jpg" alt="Bojan Majkić">
-            <h3>Bojan Majkić</h3>
-            <p>Bodovi: <span id="points-bojanm">0</span></p>
-        </div>
-        <div class="player-card" id="card-djordje">
-            <img src="images/djordje_trifunovic.jpg" alt="Đorđe Trifunović">
-            <h3>Đorđe Trifunović</h3>
-            <p>Bodovi: <span id="points-djordje">0</span></p>
-        </div>
-    </div>
-</section>
+    </section>
 
-    <section class="score-update">
+    <!-- Grupa B -->
+    <section class="tournament-info">
+        <h2>Grupa B</h2>
+        <div class="group">
+            <div class="player-card" id="card-leonardo">
+                <img src="images/leonardo_giric.jpg" alt="Leonardo Giric">
+                <h3>Leonardo Giric</h3>
+                <p>Bodovi: <span id="points-leonardo">0</span></p>
+            </div>
+            <div class="player-card" id="card-bojanm">
+                <img src="images/bojan_majkic.jpg" alt="Bojan Majkić">
+                <h3>Bojan Majkić</h3>
+                <p>Bodovi: <span id="points-bojanm">0</span></p>
+            </div>
+            <div class="player-card" id="card-djordje">
+                <img src="images/djordje_trifunovic.jpg" alt="Đorđe Trifunović">
+                <h3>Đorđe Trifunović</h3>
+                <p>Bodovi: <span id="points-djordje">0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcija za unos bodova, prikazuje se samo ako je logovan admin -->
+    <section id="score-update" style="display: none;">
         <h2>Unos bodova</h2>
         <label for="player-select">Izaberite igrača:</label>
         <select id="player-select">
@@ -85,15 +80,15 @@
             <option value="goran">Goran Cimeša</option>
             <option value="leonardo">Leonardo Giric</option>
             <option value="djordje">Đorđe Trifunović</option>
-			<option value="teodor">Teodor Majkić</option>
-			<option value="dalibor">Dalibor Giric</option>
-			<option value="bojanm">Bojan Majkić</option>
-            <!-- Dodajte ostale igrače -->
+            <option value="teodor">Teodor Majkić</option>
+            <option value="dalibor">Dalibor Giric</option>
+            <option value="bojanm">Bojan Majkić</option>
         </select>
         <input type="number" id="points-input" placeholder="Unesite bodove">
         <button onclick="updatePoints()">Dodaj bodove</button>
     </section>
 
+    <!-- Tabela sa trenutnim liderima -->
     <section class="leaderboard">
         <h2>Trenutni lideri</h2>
         <table id="leaderboard-table">
@@ -120,15 +115,15 @@
                     <td>Đorđe Trifunović</td>
                     <td id="leader-djordje">0</td>
                 </tr>
-				 <tr>
+                <tr>
                     <td>Teodor Majkić</td>
                     <td id="leader-teodor">0</td>
                 </tr>
-				 <tr>
+                <tr>
                     <td>Dalibor Giric</td>
                     <td id="leader-dalibor">0</td>
                 </tr>
-				 <tr>
+                <tr>
                     <td>Bojan Majkić</td>
                     <td id="leader-bojanm">0</td>
                 </tr>
@@ -143,4 +138,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
