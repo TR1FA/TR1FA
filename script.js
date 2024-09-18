@@ -11,6 +11,7 @@ function login() {
         isLoggedIn = true;
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('score-update').style.display = 'block';
+        loadPoints(); // Učitaj bodove prilikom uspešnog logovanja
     } else {
         document.getElementById('login-error').style.display = 'block';
     }
@@ -44,12 +45,18 @@ function updatePoints() {
         return;
     }
 
+    const points = parseInt(pointsInput);
+
     // Ažuriraj bodove igrača
-    players[selectedPlayer].points += parseInt(pointsInput);
+    players[selectedPlayer].points += points;
 
     // Ažuriraj bodove u DOM-u
     document.getElementById(players[selectedPlayer].element).textContent = players[selectedPlayer].points;
     localStorage.setItem(selectedPlayer, players[selectedPlayer].points);
+
+    // Ažuriraj bodove u kolu
+    const playerCard = document.getElementById(players[selectedPlayer].card);
+    playerCard.querySelector('p:last-of-type').textContent = `Bodovi u kolu: ${points}`;
 
     // Sortiraj tabelu lidera
     sortLeaderboard();
@@ -57,8 +64,8 @@ function updatePoints() {
 
 // Funkcija za sortiranje tabele lidera po bodovima
 function sortLeaderboard() {
-    const table = document.getElementById("leaderboard-table");
-    const rows = Array.from(table.rows).slice(1); // Izbegni zaglavlje tabele
+    const tableBody = document.getElementById("leaderboard-table").getElementsByTagName('tbody')[0];
+    const rows = Array.from(tableBody.rows);
 
     rows.sort((a, b) => {
         const aPoints = parseInt(a.cells[1].innerText);
@@ -66,7 +73,7 @@ function sortLeaderboard() {
         return bPoints - aPoints;
     });
 
-    rows.forEach(row => table.appendChild(row)); // Ponovno dodavanje sortirane liste
+    rows.forEach(row => tableBody.appendChild(row)); // Ponovno dodavanje sortirane liste
 
     // Ažuriraj okvire za prva četiri mesta
     updateLeaderboardBorders();
@@ -80,17 +87,17 @@ function updateLeaderboardBorders() {
         const playerCard = document.getElementById(players[playerKey].card);
 
         // Ukloni sve okvire
-        playerCard.className = 'player-card'; // Resetuj klase
+        playerCard.classList.remove("gold", "silver", "brown", "lightbrown");
 
         // Dodaj odgovarajući okvir
         if (index === 0) {
-            playerCard.classList.add('border-gold'); // 1. mesto
+            playerCard.classList.add("gold"); // 1. mesto
         } else if (index === 1) {
-            playerCard.classList.add('border-silver'); // 2. mesto
+            playerCard.classList.add("silver"); // 2. mesto
         } else if (index === 2) {
-            playerCard.classList.add('border-brown'); // 3. mesto
+            playerCard.classList.add("brown"); // 3. mesto
         } else if (index === 3) {
-            playerCard.classList.add('border-lightbrown'); // 4. mesto
+            playerCard.classList.add("lightbrown"); // 4. mesto
         }
     });
 }
