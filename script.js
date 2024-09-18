@@ -11,7 +11,6 @@ function login() {
         isLoggedIn = true;
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('score-update').style.display = 'block';
-        document.getElementById('login-error').style.display = 'none'; // Sakrij grešku ako je prijava uspešna
     } else {
         document.getElementById('login-error').style.display = 'block';
     }
@@ -69,7 +68,7 @@ function sortLeaderboard() {
 
     rows.forEach(row => table.appendChild(row)); // Ponovno dodavanje sortirane liste
 
-    // Ažuriraj okvire za prva tri mesta
+    // Ažuriraj okvire za prva četiri mesta
     updateLeaderboardBorders();
 }
 
@@ -81,17 +80,17 @@ function updateLeaderboardBorders() {
         const playerCard = document.getElementById(players[playerKey].card);
 
         // Ukloni sve okvire
-        playerCard.style.border = "4px solid white";
+        playerCard.className = 'player-card'; // Resetuj klase
 
         // Dodaj odgovarajući okvir
         if (index === 0) {
-            playerCard.style.border = "4px solid gold"; // 1. mesto
+            playerCard.classList.add('border-gold'); // 1. mesto
         } else if (index === 1) {
-            playerCard.style.border = "4px solid silver"; // 2. mesto
+            playerCard.classList.add('border-silver'); // 2. mesto
         } else if (index === 2) {
-            playerCard.style.border = "4px solid brown"; // 3. mesto
+            playerCard.classList.add('border-brown'); // 3. mesto
         } else if (index === 3) {
-            playerCard.style.border = "4px solid lightbrown"; // 4. mesto
+            playerCard.classList.add('border-lightbrown'); // 4. mesto
         }
     });
 }
