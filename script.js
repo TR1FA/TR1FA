@@ -1,5 +1,5 @@
 let isLoggedIn = false;
-const adminUsername = "tr1fa";
+const adminUsername = "admin";
 const adminPassword = "12345";
 
 // Login funkcija
