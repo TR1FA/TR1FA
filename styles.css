@@ -41,16 +41,16 @@ header 2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .player-card.gold {
-    border: 3px solid gold; /* Red border for disqualified player */
+    border: 3px solid gold; /* Gold border for  player */
 }
 .player-card.silver {
-    border: 3px solid silver; /* Red border for disqualified player */
+    border: 3px solid silver; /* Silver border for player */
 }
 .player-card.brown {
-    border: 3px solid brown; /* Red border for disqualified player */
+    border: 3px solid brown; /* Bronze border for player */
 }
 .player-card.blue {
-    border: 3px solid blue; /* Red border for disqualified player */
+    border: 3px solid blue; /* Blue border for player */
 }
 
 .player-card.disqualified {
