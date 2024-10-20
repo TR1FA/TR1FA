@@ -37,7 +37,9 @@ header {
 
 
 .player-card img {
-    width: 50%;
+    width: 100%; /* Podesite na željenu širinu */
+    max-width: 150px; /* Dodajte maksimalnu širinu slike */
+    height: auto; /* Održava proporcije */
     border-radius: 10px;
 }
 
