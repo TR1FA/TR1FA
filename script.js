@@ -16,7 +16,7 @@ function login() {
 }
 
 // Podaci o igračima i njihovim bodovima
-const players = {
+const players = JSON.parse(localStorage.getItem('players')) || {
     dejan: { name: "Dejan Marković", totalPoints: 0, roundPoints: 0 },
     goran: { name: "Goran Cimeša", totalPoints: 0, roundPoints: 0 },
     leonardo: { name: "Leonardo Giric", totalPoints: 0, roundPoints: 0 },
@@ -26,13 +26,6 @@ const players = {
     bojanm: { name: "Bojan Majkić", totalPoints: 0, roundPoints: 0 },
     bojanp: { name: "Bojan Milanović", totalPoints: 0, roundPoints: 0 },
     milan: { name: "Milan Lalošević", totalPoints: 0, roundPoints: 0 }
-};
-
-const pointsForPosition = {
-    1: 6,
-    2: 3,
-    3: 2,
-    4: 1
 };
 
 function updateRoundPoints() {
@@ -53,9 +46,17 @@ function updateRoundPoints() {
     document.getElementById(`round-${playerId}`).textContent = players[playerId].roundPoints;
     document.getElementById(`leader-${playerId}`).textContent = players[playerId].totalPoints;
 
+    // Save the updated players data to localStorage
+    localStorage.setItem('players', JSON.stringify(players));
+
     // Ažuriraj tabelu lidera
     updateLeaderboard();
 }
+
+// Load saved data and update leaderboard on page load
+window.onload = () => {
+    updateLeaderboard();
+};
 
 function updateLeaderboard() {
     const tableBody = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
@@ -74,8 +75,3 @@ function updateLeaderboard() {
     });
 }
 
-
-}
-
-// Inicijalno ažuriranje tabele lidera
-updateLeaderboard();
