@@ -1,20 +1,3 @@
-let isLoggedIn = false;
-const adminUsername = "admin";
-const adminPassword = "123456";
-
-function login() {
-    const username = document.getElementById('admin-username').value;
-    const password = document.getElementById('admin-password').value;
-
-    if (username === adminUsername && password === adminPassword) {
-        isLoggedIn = true;
-        document.getElementById('login-error').style.display = 'none';
-        document.getElementById('score-update').style.display = 'block'; // Show score update section
-    } else {
-        document.getElementById('login-error').style.display = 'block';
-    }
-}
-
 // Podaci o igračima i njihovim bodovima
 const players = JSON.parse(localStorage.getItem('players')) || {
     dejan: { name: "Dejan Marković", totalPoints: 0, roundPoints: 0 },
