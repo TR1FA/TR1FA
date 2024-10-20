@@ -5,18 +5,8 @@ body {
     background-color: #f4f4f4;
 }
 
-header 1 {
+header  {
     background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-}
-
-.tournament-info {
-    margin: 10px;
-}
-header 2 {
-    background-color: #f5edec;
     color: #fff;
     text-align: center;
     padding: 1em 0;
