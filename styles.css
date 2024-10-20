@@ -31,8 +31,13 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.player-card.disqualified {
+    border: 3px solid red; /* Red border for disqualified player */
+}
+
+
 .player-card img {
-    width: 100%;
+    width: 70%;
     border-radius: 10px;
 }
 
