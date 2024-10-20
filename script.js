@@ -1,12 +1,12 @@
 // Podaci o igračima i njihovim bodovima
 const players = JSON.parse(localStorage.getItem('players')) || {
-    dejan: { name: "Dejan Marković", totalPoints: 0, roundPoints: 0 },
-    goran: { name: "Goran Cimeša", totalPoints: 0, roundPoints: 0 },
-    leonardo: { name: "Leonardo Giric", totalPoints: 0, roundPoints: 0 },
-    djordje: { name: "Đorđe Trifunović", totalPoints: 0, roundPoints: 0 },
-    teodor: { name: "Teodor Majkić", totalPoints: 0, roundPoints: 0 },
-    dalibor: { name: "Dalibor Giric", totalPoints: 0, roundPoints: 0 },
-    bojanm: { name: "Bojan Majkić", totalPoints: 0, roundPoints: 0 },
+    dejan: { name: "Dejan Marković", totalPoints: 21, roundPoints: 6 },
+    goran: { name: "Goran Cimeša", totalPoints: 4, roundPoints: 0 },
+    leonardo: { name: "Leonardo Giric", totalPoints: 15, roundPoints: 3 },
+    djordje: { name: "Đorđe Trifunović", totalPoints: 10, roundPoints: 0 },
+    teodor: { name: "Teodor Majkić", totalPoints: 16, roundPoints: 1 },
+    dalibor: { name: "Dalibor Giric", totalPoints: 15, roundPoints: 2 },
+    bojanm: { name: "Bojan Majkić", totalPoints: 1, roundPoints: 0 },
     bojanp: { name: "Bojan Milanović", totalPoints: 0, roundPoints: 0 },
     milan: { name: "Milan Lalošević", totalPoints: 0, roundPoints: 0 }
 };
