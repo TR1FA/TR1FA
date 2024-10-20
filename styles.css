@@ -46,8 +46,8 @@ header 2 {
 .player-card.silver {
     border: 3px solid silver; /* Red border for disqualified player */
 }
-.player-card.bronze {
-    border: 3px solid bronze; /* Red border for disqualified player */
+.player-card.brown {
+    border: 3px solid brown; /* Red border for disqualified player */
 }
 .player-card.blue {
     border: 3px solid blue; /* Red border for disqualified player */
