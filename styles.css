@@ -19,7 +19,7 @@ header {
 .group {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
 }
 
 .player-card {
